@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-            "CeddyG\\LangRepository\\": "src/"
+            "CeddyG\\ClaraLanguage\\": "src/"
         }
     }
 }
