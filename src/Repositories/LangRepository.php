@@ -6,12 +6,6 @@ use CeddyG\QueryBuilderRepository\QueryBuilderRepository;
 
 class LangRepository extends QueryBuilderRepository
 {
-    protected $sTable = 'lang';
-
-    protected $sPrimaryKey = 'id_lang';
-    
-    protected $sDateFormatToGet = 'd/m/Y';
-
     protected $aFillable = [
         'lang_code',
 		'lang_active'
@@ -28,6 +22,12 @@ class LangRepository extends QueryBuilderRepository
         ]
     ];
     
+    public function __construct()
+    {
+        $this->sTable       = config('clara-lang.table', 'lang');
+        $this->sPrimaryKey  = config('clara-lang.primary_key', 'id_lang');
+    }
+    
     protected function getActiveLabelAttribute($oItem)
     {
         return $oItem->lang_active == 0 ? __('general.no') : __('general.yes');
@@ -35,7 +35,7 @@ class LangRepository extends QueryBuilderRepository
     
     public function text_lang()
     {
-        return $this->hasMany('App\Repositories\TextLangRepository', 'fk_lang');
+        return $this->hasMany('CeddyG\ClaraLanguage\Repositories\TextLangRepository', 'fk_lang');
     }
 
     public function getActiveLang()
