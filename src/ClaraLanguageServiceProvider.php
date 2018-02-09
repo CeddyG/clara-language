@@ -11,6 +11,13 @@ use Illuminate\Support\ServiceProvider;
  */
 class ClaraLanguageServiceProvider extends ServiceProvider
 {
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+	
 	/**
      * Bootstrap the application services.
      *
@@ -38,6 +45,19 @@ class ClaraLanguageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton('clara-lang', function ($app) 
+		{
+            return new ClaraLang();
+        });
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['clara-lang'];
     }
 }
