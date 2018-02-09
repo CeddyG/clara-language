@@ -27,7 +27,19 @@ class ClaraLanguageServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $sConfigPath = __DIR__ . '/../config/clara-lang.php';
+		$this->publishesConfig();
+		$this->publishesMigrations();
+		$this->publishesTranslations();
+    }
+	
+	/**
+	 * Publish config file.
+	 * 
+	 * @return void
+	 */
+	private function publishesConfig()
+	{
+		$sConfigPath = __DIR__ . '/../config/clara-lang.php';
         if (function_exists('config_path')) 
 		{
             $sPublishPath = config_path('clara-lang.php');
@@ -37,8 +49,27 @@ class ClaraLanguageServiceProvider extends ServiceProvider
             $sPublishPath = base_path('config/clara-lang.php');
         }
 		
-        $this->publishes([$sConfigPath => $sPublishPath], 'clara-lang');
-    }
+        $this->publishes([$sConfigPath => $sPublishPath], 'clara-lang.config');
+	}
+	
+	private function publishesMigrations()
+	{
+		$sMigrationsPath	= __DIR__ . '/../database/migrations';
+        $sPublishPath		= $this->app->databasePath().'/migrations';
+		
+        $this->publishes([$sMigrationsPath => $sPublishPath], 'clara-lang.migrations');
+	}
+	
+	private function publishesTranslations()
+	{
+		$sTransPath = __DIR__.'/../resources/lang';
+		$this->loadTranslationsFrom($sTransPath, 'clara-lang');
+
+		$this->publishes([
+			$sTransPath => resource_path('lang/vendor/clara-lang'),
+			'clara-lang.trans'
+		]);
+	}
 
     /**
      * Register the application services.

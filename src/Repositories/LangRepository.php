@@ -30,7 +30,7 @@ class LangRepository extends QueryBuilderRepository
     
     protected function getActiveLabelAttribute($oItem)
     {
-        return $oItem->lang_active == 0 ? __('general.no') : __('general.yes');
+        return $oItem->lang_active == 0 ? __('clara-lang.no') : __('clara-lang.yes');
     }
     
     public function text_lang()
