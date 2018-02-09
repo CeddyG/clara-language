@@ -4,6 +4,8 @@ namespace CeddyG\ClaraLanguage;
 
 use Illuminate\Support\ServiceProvider;
 
+use CeddyG\ClaraLanguage\Repositories\LangRepository;
+
 /**
  * Description of ClaraLanguageServiceProvider
  *
@@ -47,7 +49,7 @@ class ClaraLanguageServiceProvider extends ServiceProvider
     {
         $this->app->singleton('clara-lang', function ($app) 
 		{
-            return new ClaraLang();
+            return new LangRepository();
         });
     }
 

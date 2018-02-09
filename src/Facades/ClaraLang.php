@@ -1,11 +1,13 @@
 <?php
 
-namespace Illuminate\Support\Facades;
+namespace CeddyG\ClaraLanguage\Facades;
+
+use Illuminate\Support\Facades\Facade;
 
 /**
  * @see \Illuminate\Translation\Translator
  */
-class Lang extends Facade
+class ClaraLang extends Facade
 {
     /**
      * Get the registered name of the component.
