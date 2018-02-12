@@ -16,6 +16,6 @@ class ClaraLang extends Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'clara-lang';
+        return 'clara.lang';
     }
 }

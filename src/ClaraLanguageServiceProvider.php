@@ -39,17 +39,17 @@ class ClaraLanguageServiceProvider extends ServiceProvider
 	 */
 	private function publishesConfig()
 	{
-		$sConfigPath = __DIR__ . '/../config/clara-lang.php';
+		$sConfigPath = __DIR__ . '/../config/clara.lang.php';
         if (function_exists('config_path')) 
 		{
-            $sPublishPath = config_path('clara-lang.php');
+            $sPublishPath = config_path('clara.lang.php');
         } 
 		else 
 		{
-            $sPublishPath = base_path('config/clara-lang.php');
+            $sPublishPath = base_path('config/clara.lang.php');
         }
 		
-        $this->publishes([$sConfigPath => $sPublishPath], 'clara-lang.config');
+        $this->publishes([$sConfigPath => $sPublishPath], 'clara.lang.config');
 	}
 	
 	private function publishesMigrations()
@@ -57,17 +57,17 @@ class ClaraLanguageServiceProvider extends ServiceProvider
 		$sMigrationsPath	= __DIR__ . '/../database/migrations';
         $sPublishPath		= $this->app->databasePath().'/migrations';
 		
-        $this->publishes([$sMigrationsPath => $sPublishPath], 'clara-lang.migrations');
+        $this->publishes([$sMigrationsPath => $sPublishPath], 'clara.lang.migrations');
 	}
 	
 	private function publishesTranslations()
 	{
 		$sTransPath = __DIR__.'/../resources/lang';
-		$this->loadTranslationsFrom($sTransPath, 'clara-lang');
+		$this->loadTranslationsFrom($sTransPath, 'clara.lang');
 
 		$this->publishes([
 			$sTransPath => resource_path('lang/vendor/clara-lang'),
-			'clara-lang.trans'
+			'clara.lang.trans'
 		]);
 	}
 
@@ -78,7 +78,7 @@ class ClaraLanguageServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('clara-lang', function ($app) 
+        $this->app->singleton('clara.lang', function ($app) 
 		{
             return new LangRepository();
         });
@@ -91,6 +91,6 @@ class ClaraLanguageServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['clara-lang'];
+        return ['clara.lang'];
     }
 }
