@@ -50,7 +50,7 @@ class LangRepository extends QueryBuilderRepository
     
     protected function getNameAttribute($oItem)
     {
-        return $oItem->text_lang->first()->lang_name;
+        return $oItem->traduction_lang->first()->lang_name;
     }
     
     public function traduction_lang()
