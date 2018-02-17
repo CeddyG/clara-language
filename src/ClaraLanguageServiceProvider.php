@@ -12,14 +12,7 @@ use CeddyG\ClaraLanguage\Repositories\LangRepository;
  * @author Ceddyg
  */
 class ClaraLanguageServiceProvider extends ServiceProvider
-{
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = true;
-	
+{	
 	/**
      * Bootstrap the application services.
      *
@@ -82,15 +75,5 @@ class ClaraLanguageServiceProvider extends ServiceProvider
 		{
             return new LangRepository();
         });
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return ['clara.lang'];
     }
 }
