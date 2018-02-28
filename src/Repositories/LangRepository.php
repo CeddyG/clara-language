@@ -8,7 +8,8 @@ use App;
 
 class LangRepository extends QueryBuilderRepository
 {
-    protected $iIdCurrentLang = 0;
+    protected $iIdCurrentLang   = 0;
+    protected $aActiveLang      = [];
 
     protected $aFillable = [
         'lang_code',
@@ -16,7 +17,8 @@ class LangRepository extends QueryBuilderRepository
     ];
     
     protected $aRelations = [
-        'text_lang'
+        'text_lang',
+        'traduction_lang'
     ];
     
     /**
@@ -60,7 +62,7 @@ class LangRepository extends QueryBuilderRepository
     
     public function text_lang()
     {
-        return $this->hasMany('CeddyG\ClaraLanguage\Repositories\TextLangRepository', 'fk_lang');
+        return $this->hasMany('CeddyG\ClaraLanguage\Repositories\TextLangRepository', 'fk_lang', [], 'fk_traduction');
     }
 
     public function getIdCurrentLang()
@@ -70,11 +72,16 @@ class LangRepository extends QueryBuilderRepository
     
     public function getActiveLang()
     {
-        return $this->findWhere(
-            [
-                ['lang_active', '=', 1]                
-            ], 
-            ['id_lang', 'name']
-        );
+        if (empty($this->aActiveLang))
+        {
+            $this->aActiveLang = $this->findWhere(
+                [
+                    ['lang_active', '=', 1]                
+                ], 
+                ['id_lang', 'name']
+            );            
+        }
+        
+        return $this->aActiveLang;
     }
 }
