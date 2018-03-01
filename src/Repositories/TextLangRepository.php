@@ -10,22 +10,18 @@ class TextLangRepository extends QueryBuilderRepository
 
     protected $sPrimaryKey = 'id_text_lang';
     
-    protected $sDateFormatToGet = 'd/m/Y';
-    
     protected $aRelations = [
         'lang'
     ];
 
     protected $aFillable = [
         'fk_lang',
+        'fk_traduction',
 		'lang_name'
     ];
     
-   
     public function lang()
     {
         return $this->belongsTo('CeddyG\ClaraLanguage\Repositories\LangRepository', 'fk_lang');
     }
-
-
 }
