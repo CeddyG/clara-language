@@ -19,7 +19,6 @@ class LanguageServiceProvider extends ServiceProvider
     public function boot()
     {
 		$this->publishesConfig();
-		$this->publishesMigrations();
 		$this->publishesTranslations();
     }
 	
