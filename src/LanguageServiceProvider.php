@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
  *
  * @author Ceddyg
  */
-class ClaraLanguageServiceProvider extends ServiceProvider
+class LanguageServiceProvider extends ServiceProvider
 {	
 	/**
      * Bootstrap the application services.

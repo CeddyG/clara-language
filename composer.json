@@ -20,10 +20,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "CeddyG\\ClaraLibrary\\LibraryServiceProvider"
+                "CeddyG\\ClaraLanguage\\LanguageServiceProvider"
             ],
             "aliases": {
-                "Library": "CeddyG\\ClaraLibrary\\Facades\\Library"
+                "Library": "CeddyG\\ClaraLanguage\\Facades\\ClaraLang"
             }
         }
     }
