@@ -4,8 +4,6 @@ namespace CeddyG\ClaraLanguage;
 
 use Illuminate\Support\ServiceProvider;
 
-use CeddyG\ClaraLanguage\Repositories\LangRepository;
-
 /**
  * Description of ClaraLanguageServiceProvider
  *
@@ -45,18 +43,10 @@ class ClaraLanguageServiceProvider extends ServiceProvider
         $this->publishes([$sConfigPath => $sPublishPath], 'clara.lang.config');
 	}
 	
-	private function publishesMigrations()
-	{
-		$sMigrationsPath	= __DIR__ . '/../database/migrations';
-        $sPublishPath		= $this->app->databasePath().'/migrations';
-		
-        $this->publishes([$sMigrationsPath => $sPublishPath], 'clara.lang.migrations');
-	}
-	
 	private function publishesTranslations()
 	{
 		$sTransPath = __DIR__.'/../resources/lang';
-		$this->loadTranslationsFrom($sTransPath, 'clara.lang');
+		$this->loadTranslationsFrom($sTransPath, 'clara-lang');
 
 		$this->publishes([
 			$sTransPath => resource_path('lang/vendor/clara-lang'),
@@ -73,7 +63,7 @@ class ClaraLanguageServiceProvider extends ServiceProvider
     {
         $this->app->singleton('clara.lang', function ($app) 
 		{
-            return new LangRepository();
+            return new ClaraLang();
         });
     }
 }

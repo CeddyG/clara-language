@@ -2,23 +2,12 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Table Name
-    |--------------------------------------------------------------------------
-    |
-    | The name of the lang table.
-    */
-
-    'table' => 'lang',
-	
-    /*
-    |--------------------------------------------------------------------------
-    | Primary key
-    |--------------------------------------------------------------------------
-    |
-    | The name of the primary key in lang table.
-    */
-
-    'primary_key' => 'id_lang',
+    'route' => [
+        'web' => [
+            'prefix'    => 'admin',
+            'middleware' => ['web', \CeddyG\ClaraSentinel\Http\Middleware\SentinelAccessMiddleware::class]
+        ]
+    ],
+    
+    'controller' => 'CeddyG\ClaraLanguage\Http\Controllers\Admin\LangController',
 ];

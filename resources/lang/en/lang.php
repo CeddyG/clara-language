@@ -12,7 +12,7 @@ return [
     |
     */
 
-    'yes'	=> 'Yes',
-    'no'	=> 'No',
+    'language'  => 'Language',
+    'activate'  => 'Activate a language',
 
 ];

@@ -5,7 +5,7 @@ namespace CeddyG\ClaraLanguage\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
- * @see \Illuminate\Translation\Translator
+ * @see \CeddyG\ClaraLanguage\ClaraLanguage
  */
 class ClaraLang extends Facade
 {

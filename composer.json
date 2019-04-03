@@ -1,7 +1,7 @@
 {
     "name": "ceddyg/clara-language",
     "description": "Add a lang repository to Clara.",
-    "keywords": ["laravel", "repository", "fluent", "query-builder", "Language"],
+    "keywords": ["laravel", "Language"],
     "authors": [
         {
             "name": "CeddyG"
@@ -10,12 +10,21 @@
     "license": "MIT",
     "require": {
         "php": ">=5.4.0",
-        "illuminate/support": "~5.1",
-        "ceddyg/query-builder-repository": "^1.16"
+        "illuminate/support": "~5.1"
     },
     "autoload": {
         "psr-4": {
             "CeddyG\\ClaraLanguage\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "CeddyG\\ClaraLibrary\\LibraryServiceProvider"
+            ],
+            "aliases": {
+                "Library": "CeddyG\\ClaraLibrary\\Facades\\Library"
+            }
         }
     }
 }
