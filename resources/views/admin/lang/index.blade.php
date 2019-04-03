@@ -23,7 +23,7 @@
                         {!! BootForm::open()->action(route('admin.lang.store'))->post() !!}
                         
                         @foreach ($aLangs as $sLang)
-                            {!! BootForm::YesNo(__('clara-lang::lang.'.$sLang), $sLang) !!}
+                            {!! BootForm::YesNo(__('clara-lang::code.'.$sLang), $sLang) !!}
                         @endforeach
                         
                         {!! BootForm::submit(__('clara::general.send'), 'btn-primary')->addClass('pull-right') !!}

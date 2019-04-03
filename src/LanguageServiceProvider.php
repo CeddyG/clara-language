@@ -73,6 +73,10 @@ class LanguageServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(
+            __DIR__ . '/../config/clara.lang.php', 'clara.lang'
+        );
+        
         $this->app->singleton('clara.lang', function ($app) 
 		{
             return new ClaraLang();

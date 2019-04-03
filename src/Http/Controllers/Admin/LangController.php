@@ -1,6 +1,6 @@
 <?php
 
-namespace CeddyG\ClaraLanguage\Http\Controllers;
+namespace CeddyG\ClaraLanguage\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
@@ -22,7 +22,7 @@ class LangController extends Controller
         
         $aLangs = config('clara.lang.iso');
         
-        return view('clara-lang::lang.index', compact('sPageTitle'));
+        return view('clara-lang::admin.lang.index', compact('sPageTitle', 'aLangs'));
     }
     
     public function store(Request $oRequest)
