@@ -20,6 +20,8 @@ class LanguageServiceProvider extends ServiceProvider
     {
 		$this->publishesConfig();
 		$this->publishesTranslations();
+        $this->loadRoutesFrom(__DIR__.'/routes.php');
+		$this->publishesView();
     }
 	
 	/**
@@ -51,6 +53,17 @@ class LanguageServiceProvider extends ServiceProvider
 			$sTransPath => resource_path('lang/vendor/clara-lang'),
 			'clara.lang.trans'
 		]);
+	}
+
+	private function publishesView()
+	{
+        $sResources = __DIR__.'/../resources/views';
+
+        $this->publishes([
+            $sResources => resource_path('views/vendor/clara-lang'),
+        ], 'clara.lang.views');
+        
+        $this->loadViewsFrom($sResources, 'clara-lang');
 	}
 
     /**
