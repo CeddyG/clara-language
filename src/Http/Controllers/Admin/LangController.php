@@ -4,6 +4,7 @@ namespace CeddyG\ClaraLanguage\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App;
 use Illuminate\Http\Request;
 use CeddyG\ClaraLanguage\ClaraLang;
 
@@ -20,9 +21,21 @@ class LangController extends Controller
     {
         $sPageTitle = __('clara-lang::lang.language');
         
-        $aLangs = config('clara.lang.iso');
+        $aLangs         = config('clara.lang.iso');
+        $aActiveLangs   = config('clara.lang.active', [App::getLocale()]);
         
-        return view('clara-lang::admin.lang.index', compact('sPageTitle', 'aLangs'));
+        $iCountActive   = count($aActiveLangs);
+        
+        $aActive    = [];
+        
+        for ($i = 0 ; $i < $iCountActive ; $i++)
+        {
+            $aActive[] = 1;
+        }
+        
+        $aActiveLangs   = array_combine($aActiveLangs, $aActive);
+        
+        return view('clara-lang::admin.lang.index', compact('sPageTitle', 'aLangs', 'aActiveLangs'));
     }
     
     public function store(Request $oRequest)
