@@ -24,8 +24,14 @@ class ClaraLang
      */
     public function setActiveLang(array $aLang)
     {
-        $this->createFile('clara.route.admin.php', [
-            'Config' => implode(",\n", $aLang)
+        $aNewConfig = [];
+        foreach ($aLang as $sValue)
+        {
+            $aNewConfig[] = "    '".$sValue."'";
+        }
+        
+        $this->createFile('clara.lang.active.php', [
+            'Config' => implode(",\n", $aNewConfig)
         ]);
     }
     
@@ -72,7 +78,7 @@ class ClaraLang
      */
     protected function buildFile($aDummies)
     {
-        $sStub = File::get(__DIR__.'/../../resources/blueprints/config.stub');
+        $sStub = File::get(__DIR__.'/../resources/blueprints/config.stub');
         
         foreach ($aDummies as $sDummy => $sValue)
         {
