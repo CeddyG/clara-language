@@ -17,6 +17,19 @@ class ClaraLang
         return array_keys(config('clara.lang.iso'), $sCode)[0];
     }
     
+    public function getActiveLang()
+    {
+        $aActiveLang    = config('clara.lang.active');
+        $aLang          = [];
+        
+        foreach ($aActiveLang as $iIdLang => $sLang)
+        {
+            $aLang[$iIdLang] = __('clara-lang::code.'.$sLang);
+        }
+        
+        return $aLang;
+    }
+    
     /**
      * Activate a list of lang.
      * 
@@ -27,7 +40,7 @@ class ClaraLang
         $aNewConfig = [];
         foreach ($aLang as $sValue)
         {
-            $aNewConfig[] = "    '".$sValue."'";
+            $aNewConfig[] = "    ".$this->getIdByCode($sValue)." => '".$sValue."'";
         }
         
         $this->createFile('clara.lang.active.php', [

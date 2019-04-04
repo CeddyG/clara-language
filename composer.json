@@ -23,7 +23,7 @@
                 "CeddyG\\ClaraLanguage\\LanguageServiceProvider"
             ],
             "aliases": {
-                "Library": "CeddyG\\ClaraLanguage\\Facades\\ClaraLang"
+                "ClaraLang": "CeddyG\\ClaraLanguage\\Facades\\ClaraLang"
             }
         }
     }
