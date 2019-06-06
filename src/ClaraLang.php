@@ -2,6 +2,7 @@
 
 namespace CeddyG\ClaraLanguage;
 
+use App;
 use File;
 
 class ClaraLang
@@ -19,8 +20,14 @@ class ClaraLang
     
     public function getActiveLang()
     {
-        $aActiveLang    = config('clara.lang.active');
-        $aLang          = [];
+        $aActiveLang    = config(
+            'clara.lang.active', 
+            [
+                $this->getIdByCode(App::getLocale()) => App::getLocale()
+            ]
+        );
+        
+        $aLang = [];
         
         foreach ($aActiveLang as $iIdLang => $sLang)
         {
